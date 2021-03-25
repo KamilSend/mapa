@@ -1,0 +1,24 @@
+.signupForm{
+  width:100vw;
+  min-height: 400px;
+  //background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form-group{
+  min-width: 90%;
+  //background-color: red;
+  display: flex;
+}
+
+.form-label{
+  width:30%;
+  //background-color: green;
+}
+
+.form-control{
+  width:70%;
+}

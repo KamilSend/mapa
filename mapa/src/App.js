@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+import Signup from './components/authentication/signup/signup'
+
 import './App.css';
 
 class App extends Component {
@@ -14,27 +16,27 @@ class App extends Component {
             },
             {
                 "level": "pow",
-                "v": "Nowosądecki"
+                "v": "Kraków"
             },
             {
                 "level": "gmi",
-                "v": "Grybów"
+                "v": "Kraków"
             },
             {
                 "level": "msc",
-                "v": "Polna"
+                "v": "Kraków"
             },
             {
                 "level": "ulc",
-                "v": ""
+                "v": "Bociana"
             },
             {
                 "level": "kod",
-                "v": "33-331"
+                "v": "31-231"
             },
             {
                 "level": "nr",
-                "v": "143"
+                "v": ""
             }
         ]
 
@@ -46,19 +48,28 @@ class App extends Component {
             headers: headers
         })
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 console.log(res.data);
         })
             .catch(error => {
                 console.log(error)
             })
+    }
 
+    firebaseTest = () => {
+        axios.get('https://mapa-6578a-default-rtdb.firebaseio.com/users.json')
+            .then(response => {
+                    console.log(response)
+                }
+            )
     }
 
   render(){
     return (
         <div className="App">
           <button onClick={this.handleTest}>Test</button>
+          <button onClick={this.firebaseTest}>Test firebase</button>
+            <Signup/>
         </div>
     );
   }

@@ -46,10 +46,7 @@ export function signup(email, password, nickname, province, county, community, v
                 headers: headers
             })
                 .then(res => {
-                    // console.log(res);
-                    // console.log(res.data);
-                    // console.log(res.data.features[0].geometry.coordinates);
-
+                    console.log(res)
                     axios.patch(`https://mapa-6578a-default-rtdb.firebaseio.com/mapa.json`,
                         {
                             [user]:{
@@ -68,7 +65,7 @@ export function signup(email, password, nickname, province, county, community, v
                             headers: headers
                         }
                     ).catch(error => {
-                        // console.log(error)
+                        console.log(error)
                     })
 
 

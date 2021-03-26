@@ -32,7 +32,7 @@ class Signup extends Component{
     }
 
     async handleSubmit(event) {
-        console.log(event)
+        // console.log(event)
         event.preventDefault();
         this.setState({ error: '' });
         try {

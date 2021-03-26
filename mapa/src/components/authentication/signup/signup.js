@@ -4,6 +4,9 @@ import { signup } from '../../../helpers/auth'
 import { Button, Jumbotron, Form } from 'react-bootstrap';
 
 import './signup.scss'
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 // import '../login/login.scss'
 
 class Signup extends Component{
@@ -21,6 +24,7 @@ class Signup extends Component{
         zipCode:'',
         buildingNumber:'',
         coordinates:[],
+        loader:false,
     };
 
     handleChange(event) {
@@ -32,6 +36,7 @@ class Signup extends Component{
     }
 
     async handleSubmit(event) {
+        this.setState({loader:true})
         // console.log(event)
         event.preventDefault();
         this.setState({ error: '' });
@@ -39,14 +44,27 @@ class Signup extends Component{
             await signup(this.state.email, this.state.password, this.state.nickname,
                 this.state.province, this.state.county, this.state.community, this.state.village,
             this.state.street, this.state.zipCode, this.state.buildingNumber);
+            this.setState({loader:false})
         } catch (error) {
             this.setState({ error: error.message });
+            this.setState({loader:true})
         }
+
     }
 
     render(){
         return(
             <div>
+                {this.state.loader?
+                <div className="loaderContainer">
+                    <Loader
+                        type="Puff"
+                        color="#00BFFF"
+                        height={500}
+                        width={500}
+                        visible={this.state.loader}
+                    />
+                </div>:null}
                 <Jumbotron>
                     <Form className="signupForm">
                         <Form.Group controlId="formNickname">

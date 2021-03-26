@@ -4,15 +4,15 @@ import axios from 'axios'
 import Signup from './components/authentication/signup/signup'
 import Maps from './components/maps/maps'
 import Users from './components/users/users'
-
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './App.css';
 
 class App extends Component {
 
     state = {
-        coordinates:[
-
-        ],
+        coordinates:[],
+        loader:false,
     }
 
     handleTest = () => {
@@ -73,7 +73,7 @@ class App extends Component {
     }
 
     handleFetchUsers = () => {
-
+        this.setState({loader:true})
         const coordinates = []
 
         console.log('pobieram użytkowników')
@@ -86,13 +86,26 @@ class App extends Component {
                     })
                     this.setState({coordinates:coordinates})
                 }
-            )
+            ).catch(error => console.log(error))
+            .then( () => this.setState({loader:false}))
+
+
         // console.log(coordinates)
     }
 
   render(){
     return (
         <div className="App">
+            {this.state.loader?
+                <div className="loaderContainer">
+                    <Loader
+                        type="Puff"
+                        color="#00BFFF"
+                        height={500}
+                        width={500}
+                        visible={this.state.loader}
+                    />
+                </div>:null}
           <button onClick={this.handleTest}>Test</button>
           <button onClick={this.firebaseTest}>Test firebase</button>
             <Signup/>

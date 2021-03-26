@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import Signup from './components/authentication/signup/signup'
+import Maps from './components/maps/maps'
 
 import './App.css';
 
@@ -70,6 +71,7 @@ class App extends Component {
           <button onClick={this.handleTest}>Test</button>
           <button onClick={this.firebaseTest}>Test firebase</button>
             <Signup/>
+            <Maps/>
         </div>
     );
   }

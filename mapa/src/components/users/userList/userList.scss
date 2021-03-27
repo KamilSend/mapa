@@ -1,0 +1,23 @@
+$listWidth: 50vw;
+
+.userListWrapper{
+  min-width:$listWidth;
+  max-width: $listWidth;
+
+  span{
+    display: inline-block;
+    min-width:$listWidth/6;
+    padding-bottom: 10px;
+  }
+}
+
+.userList{
+  text-decoration: none;
+  list-style: none;
+  padding:0;
+  margin:0;
+
+  li{
+    width:100%;
+  }
+}

@@ -5,13 +5,24 @@ import Signup from './components/authentication/signup/signup'
 import Maps from './components/maps/maps'
 import Users from './components/users/users'
 import Loader from "react-loader-spinner";
+import UserList from './components/users/userList/userList'
+
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import './App.css';
+import './App.scss';
 
 class App extends Component {
 
     state = {
         coordinates:[],
+        users:[
+            {
+                nickname:'',
+                province:'',
+                county:'',
+                community:'',
+                village:'',
+            }
+        ],
         loader:false,
     }
 
@@ -80,17 +91,26 @@ class App extends Component {
         axios.get('https://mapa-6578a-default-rtdb.firebaseio.com/mapa.json')
             .then(response => {
                     const users = Object.keys(response.data);
+                    const allUsers = []
                     const userList = users.map((user, index) => {
                         const coordinate = [response.data[user].coordinates[1], response.data[user].coordinates[0]]
                         coordinates.push(coordinate)
+                        const singleUser = {
+                            nickname: response.data[user].nickname,
+                            province:response.data[user].province,
+                            county:response.data[user].county,
+                            community:response.data[user].community,
+                            village:response.data[user].village,
+                        }
+                        allUsers.push(singleUser)
+                        this.setState({users:allUsers})
                     })
+
                     this.setState({coordinates:coordinates})
                 }
             ).catch(error => console.log(error))
             .then( () => this.setState({loader:false}))
 
-
-        // console.log(coordinates)
     }
 
   render(){
@@ -106,9 +126,12 @@ class App extends Component {
                         visible={this.state.loader}
                     />
                 </div>:null}
-          <button onClick={this.handleTest}>Test</button>
-          <button onClick={this.firebaseTest}>Test firebase</button>
-            <Signup/>
+            <button onClick={this.handleTest}>Test</button>
+            <button onClick={this.firebaseTest}>Test firebase</button>
+            <div className="userWrapper">
+                <Signup/>
+                <UserList users={this.state.users}/>
+            </div>
             <Users fetchUsers={this.handleFetchUsers}/>
             <Maps coordinates={this.state.coordinates}/>
         </div>

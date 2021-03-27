@@ -1,5 +1,6 @@
 .signupForm{
-  width:100vw;
+  min-width:50vw;
+  width:100%;
   min-height: 400px;
   //background-color: lightblue;
   display: flex;
@@ -21,4 +22,17 @@
 
 .form-control{
   width:70%;
+}
+
+.loaderContainer{
+  position: fixed;
+  width:100vw;
+  height:100vh;
+  top:0;
+  left:0;
+  z-index:1000;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

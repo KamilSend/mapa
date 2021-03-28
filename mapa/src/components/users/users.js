@@ -6,7 +6,7 @@ import './users.scss'
 const users = (props) => {
     return(
         <>
-            <Button className="displayUsers" onClick={props.fetchUsers}>Wyświetl użytkowników</Button>
+            <Button className="displayUsers" onClick={props.fetchUsers}>Pobierz użytkowników</Button>
         </>
 
     )

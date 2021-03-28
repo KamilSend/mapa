@@ -11,6 +11,10 @@ $listWidth: 50vw;
     max-width: $listWidth;
   }
 
+  .tableHeader{
+    font-weight: bold;
+  }
+
   span{
     margin:0;
     display: inline-block;

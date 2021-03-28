@@ -22,14 +22,14 @@ const userList = (props) => {
 
         <Jumbotron className="userListWrapper">
             <h2>Lista użytkowników:</h2>
-            <span className="lp">Lp</span>
-            <span>Nazwa</span>
-            <span>Województwo</span>
-            <span>Powiat</span>
-            <span>Gmina</span>
-            <span>Miejscowość</span>
+            <span className="lp tableHeader">Lp</span>
+            <span className="tableHeader">Nazwa</span>
+            <span className="tableHeader">Województwo</span>
+            <span className="tableHeader">Powiat</span>
+            <span className="tableHeader">Gmina</span>
+            <span className="tableHeader">Miejscowość</span>
             <ul className="userList">
-                {list}
+                {props.users[0].nickname===""?null:list}
             </ul>
         </Jumbotron>
 

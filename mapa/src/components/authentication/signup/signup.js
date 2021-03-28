@@ -32,12 +32,40 @@ class Signup extends Component{
         this.setState({
             [event.target.name]: event.target.value
         });
-        // console.log(this.state)
     }
 
     async handleSubmit(event) {
+        if(this.state.nickname === ''){
+            alert('Podaj nazwę użytkownika')
+            return
+        }
+        if(this.state.email === ''){
+            alert('Podaj poprawny adres email')
+            return
+        }
+        if(this.state.password === ''){
+            alert('Hasło musi zawierać przynajmniej 6 znaków')
+            return
+        }
+        if(this.state.province === ''){
+            alert('Podaj województwo')
+            return
+        }
+        if(this.state.county === ''){
+            alert('Podaj powiat')
+            return
+        }
+        if(this.state.community === ''){
+            alert('Podaj Gmine')
+            return
+        }
+        if(this.state.village === ''){
+            alert('Podaj Miejscowość')
+            return
+        }
+
+
         this.setState({loader:true})
-        // console.log(event)
         event.preventDefault();
         this.setState({ error: '' });
         try {

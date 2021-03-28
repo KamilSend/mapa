@@ -1,4 +1,5 @@
 import React from 'react'
+import { Jumbotron } from 'react-bootstrap';
 
 import './userList.scss'
 
@@ -19,7 +20,7 @@ const userList = (props) => {
 
     return(
 
-        <div className="userListWrapper">
+        <Jumbotron className="userListWrapper">
             <h2>Lista użytkowników:</h2>
             <span className="lp">Lp</span>
             <span>Nazwa</span>
@@ -30,7 +31,7 @@ const userList = (props) => {
             <ul className="userList">
                 {list}
             </ul>
-        </div>
+        </Jumbotron>
 
     )
 }

@@ -1,10 +1,12 @@
 import React from 'react'
+import { Button} from 'react-bootstrap';
+
+import './users.scss'
 
 const users = (props) => {
     return(
         <>
-            <div>Lista użytkowników</div>
-            <button onClick={props.fetchUsers}>Wyświetl użytkowników</button>
+            <Button className="displayUsers" onClick={props.fetchUsers}>Wyświetl użytkowników</Button>
         </>
 
     )

@@ -9,6 +9,7 @@ import UserList from './components/users/userList/userList'
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
 

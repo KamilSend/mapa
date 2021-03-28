@@ -23,6 +23,10 @@ sudo apt-get install npm
 ## Built With
 * React 17 (CRA)
 * CSS 3 (With SASS preprocessor)
+* Leaflet
+* CAPAP API
+* React-Bootstrap
+
 ## Authors
 * Kamil Sendecki
 

@@ -31,12 +31,11 @@ class App extends Component {
         this.setState({loader:true})
         const coordinates = []
 
-        console.log('pobieram użytkowników')
         axios.get('https://mapa-6578a-default-rtdb.firebaseio.com/mapa.json')
             .then(response => {
                     const users = Object.keys(response.data);
                     const allUsers = []
-                    const userList = users.map((user, index) => {
+                    users.forEach((user, index) => {
                         const coordinate = [response.data[user].coordinates[1], response.data[user].coordinates[0]]
                         coordinates.push(coordinate)
                         const singleUser = {

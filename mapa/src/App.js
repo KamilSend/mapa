@@ -9,6 +9,7 @@ import UserList from './components/users/userList/userList'
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
 
@@ -26,73 +27,15 @@ class App extends Component {
         loader:false,
     }
 
-    handleTest = () => {
-
-        const data = [
-            {
-                "level": "woj",
-                "v": "Małopolskie"
-            },
-            {
-                "level": "pow",
-                "v": "Kraków"
-            },
-            {
-                "level": "gmi",
-                "v": "Kraków"
-            },
-            {
-                "level": "msc",
-                "v": "Kraków"
-            },
-            {
-                "level": "ulc",
-                "v": "Bociana"
-            },
-            {
-                "level": "kod",
-                "v": "31-231"
-            },
-            {
-                "level": "nr",
-                "v": ""
-            }
-        ]
-
-        const headers = {
-            'Content-Type': 'application/json',
-        }
-
-        axios.post('https://capap.gugik.gov.pl/api/fts/hier/pkt/qq',  data, {
-            headers: headers
-        })
-            .then(res => {
-                // console.log(res);
-                console.log(res.data);
-        })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
-    firebaseTest = () => {
-        axios.get('https://mapa-6578a-default-rtdb.firebaseio.com/users.json')
-            .then(response => {
-                    console.log(response)
-                }
-            )
-    }
-
     handleFetchUsers = () => {
         this.setState({loader:true})
         const coordinates = []
 
-        console.log('pobieram użytkowników')
         axios.get('https://mapa-6578a-default-rtdb.firebaseio.com/mapa.json')
             .then(response => {
                     const users = Object.keys(response.data);
                     const allUsers = []
-                    const userList = users.map((user, index) => {
+                    users.forEach((user, index) => {
                         const coordinate = [response.data[user].coordinates[1], response.data[user].coordinates[0]]
                         coordinates.push(coordinate)
                         const singleUser = {
@@ -126,8 +69,6 @@ class App extends Component {
                         visible={this.state.loader}
                     />
                 </div>:null}
-            <button onClick={this.handleTest}>Test</button>
-            <button onClick={this.firebaseTest}>Test firebase</button>
             <div className="userWrapper">
                 <Signup/>
                 <UserList users={this.state.users}/>

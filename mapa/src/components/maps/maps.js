@@ -10,11 +10,11 @@ L.Icon.Default.imagePath='img/'
 const maps = (props) => {
 
     const position = [52.0989333, 19.2967582,7]
-    const markerPosition = [49.6620367, 20.9955048,17]
+    // const markerPosition = [49.6620367, 20.9955048,17]
 
-    const markers = props.coordinates.map((marker) => {
+    const markers = props.coordinates.map((marker, index) => {
         return(
-            <Marker position={marker}>
+            <Marker position={marker} key={index}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
                 </Popup>

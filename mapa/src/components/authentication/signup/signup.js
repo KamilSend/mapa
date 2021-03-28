@@ -94,6 +94,7 @@ class Signup extends Component{
                     />
                 </div>:null}
                 <Jumbotron>
+                    <h2>Zarejestruj nowego użytkownika</h2>
                     <Form className="signupForm">
                         <Form.Group controlId="formNickname">
                             <Form.Label>Nickname</Form.Label>
@@ -187,6 +188,7 @@ class Signup extends Component{
                         </Form.Group>
                     </Form>
                     <Button
+                        className="signupButton"
                         type="submit"
                         onClick={this.handleSubmit.bind(this)}
                     >Sign up</Button>

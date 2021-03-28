@@ -1,22 +1,39 @@
+@import '../../../../src/App.scss';
+
 .signupForm{
-  min-width:50vw;
+  min-width:100%;
   width:100%;
-  min-height: 400px;
+  min-height: 300px;
   //background-color: lightblue;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  //justify-content: space-around;
+  justify-content: center;
   align-items: center;
+
+  @include respond(tab-port){
+    min-width:50vw;
+    justify-content: space-around;
+  }
+
 }
 
 .form-group{
   min-width: 90%;
   //background-color: red;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem !important;
+
+  @include respond(tab-port){
+    flex-direction: row;
+  }
 }
 
 .form-label{
-  width:30%;
+  width:100%;
+  text-align: center;
   //background-color: green;
 }
 
@@ -35,4 +52,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.signupButton{
+  margin:10px;
 }

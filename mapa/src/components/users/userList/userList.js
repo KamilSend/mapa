@@ -7,7 +7,7 @@ const userList = (props) => {
     const list = props.users.map( (user, index) => {
         return(
             <li key={index}>
-                <span>{index+1}</span>
+                <span className="lp">{index+1}</span>
                 <span>{user.nickname}</span>
                 <span>{user.province}</span>
                 <span>{user.county}</span>
@@ -21,7 +21,7 @@ const userList = (props) => {
 
         <div className="userListWrapper">
             <h2>Lista użytkowników:</h2>
-            <span>Lp</span>
+            <span className="lp">Lp</span>
             <span>Nazwa</span>
             <span>Województwo</span>
             <span>Powiat</span>

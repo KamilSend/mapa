@@ -10,18 +10,16 @@ L.Icon.Default.imagePath='img/'
 const maps = (props) => {
 
     const position = [52.0989333, 19.2967582,7]
-    // const markerPosition = [49.6620367, 20.9955048,17]
 
     const markers = props.coordinates.map((marker, index) => {
         return(
             <Marker position={marker} key={index}>
                 <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
+                    {marker}
                 </Popup>
             </Marker>
         )
     })
-
 
     return(
         <div className="leafletContainer">
@@ -30,11 +28,6 @@ const maps = (props) => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {/*<Marker position={props.coordinates[1]}>*/}
-                {/*    <Popup>*/}
-                {/*        A pretty CSS3 popup. <br /> Easily customizable.*/}
-                {/*    </Popup>*/}
-                {/*</Marker>*/}
                 {markers}
             </MapContainer>
         </div>

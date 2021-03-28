@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { signup } from '../../../helpers/auth'
-
 import { Button, Jumbotron, Form } from 'react-bootstrap';
+import Loader from "react-loader-spinner";
 
 import './signup.scss'
-import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-
-// import '../login/login.scss'
 
 class Signup extends Component{
 

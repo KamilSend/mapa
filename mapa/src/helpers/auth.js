@@ -1,83 +1,6 @@
 import { auth } from "../services/firebase"
 import axios from "axios";
 
-
-// export function signup(email, password, nickname, province, county, community, village, street, zipCode, buildingNumber) {
-//     return auth().createUserWithEmailAndPassword(email, password)
-//         .then((userCredential) => {
-//             const user = userCredential.user.uid
-//             // console.log(userCredential.user.uid)
-//
-//             const data = [
-//                 {
-//                     "level": "woj",
-//                     "v": province
-//                 },
-//                 {
-//                     "level": "pow",
-//                     "v": county
-//                 },
-//                 {
-//                     "level": "gmi",
-//                     "v": community
-//                 },
-//                 {
-//                     "level": "msc",
-//                     "v": village
-//                 },
-//                 {
-//                     "level": "ulc",
-//                     "v": street
-//                 },
-//                 {
-//                     "level": "kod",
-//                     "v": zipCode
-//                 },
-//                 {
-//                     "level": "nr",
-//                     "v": buildingNumber
-//                 }
-//             ]
-//
-//             const headers = {
-//                 'Content-Type': 'application/json',
-//             }
-//
-//             axios.post('https://capap.gugik.gov.pl/api/fts/hier/pkt/qq',  data, {
-//                 headers: headers
-//             })
-//                 .then(res => {
-//                     console.log(res)
-//                     axios.patch(`https://mapa-6578a-default-rtdb.firebaseio.com/mapa.json`,
-//                         {
-//                             [user]:{
-//                                 email: email,
-//                                 nickname:nickname,
-//                                 province:province,
-//                                 county:county,
-//                                 community:community,
-//                                 village:village,
-//                                 street:street,
-//                                 zipCode:zipCode,
-//                                 buildingNumber:buildingNumber,
-//                                 coordinates:res.data.features[0].geometry.coordinates,
-//                             }
-//                         }, {
-//                             headers: headers
-//                         }
-//                     ).catch(error => {
-//                         console.log(error)
-//                     })
-//
-//
-//                 })
-//                 .catch(error => {
-//                     // console.log(error)
-//                 })
-//
-//         })
-// }
-
 export function signup(email, password, nickname, province, county, community, village, street, zipCode, buildingNumber) {
 
     const headers = {
@@ -150,33 +73,28 @@ export function signup(email, password, nickname, province, county, community, v
     })
         .then(res => {
             if (res.data.features.length === 0) {
-                console.log('spróbuje bez numeru domu')
                 const data2 = [...data]
                 data2[6] =
                     {
                     "level": "nr",
                     "v": ''
                     }
-                console.log(data2)
                 axios.post('https://capap.gugik.gov.pl/api/fts/hier/pkt/qq', data2, {
                     headers: headers
                 })
                     .then(res => {
                         if (res.data.features.length === 0) {
-                            console.log('spróbuje bez ulicy')
                             const data3 = [...data2]
                             data3[5] =
                                 {
                                     "level": "ulc",
                                     "v": ''
                                 }
-                            console.log(data3)
                             axios.post('https://capap.gugik.gov.pl/api/fts/hier/pkt/qq', data3, {
                                 headers: headers
                             })
                                 .then(res => {
                                     if (res.data.features.length === 0) {
-                                        console.log("niepoprawne dane adresowe")
                                         alert('niepoprawne dane adresowe')
                                     }else{
                                         createUser(res)
@@ -188,8 +106,6 @@ export function signup(email, password, nickname, province, county, community, v
                         }
                     })
             } else {
-                console.log(res)
-                console.log('poprawne dane adresowe')
                 createUser(res)
             }
         })
@@ -201,10 +117,7 @@ export function signin(email, password) {
 
 export function signout(){
     return auth().signOut().then(() => {
-        // console.log('wylogowano')
-        // Sign-out successful.
     }).catch((error) => {
         console.log(error)
-        // An error happened.
     });
 }
